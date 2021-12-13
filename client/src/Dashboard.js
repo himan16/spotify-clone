@@ -22,20 +22,6 @@ function Dashboard(props){
         setSearch("")
         setLyrics("")
     }
-    
-    useEffect(()=>{
-        if(!playingTrack) return
-
-        axios
-        .get("http://localhost:3001/lyrics", {params:{
-            track: playingTrack.title,
-            artist: playingTrack.artist
-         },
-        })
-        .then(res=>{
-            setLyrics(res.data.lyrics)
-        })
-    },[playingTrack])
     // console.log(accessToken)
     useEffect(()=>{
        if(!accessToken) return
@@ -72,7 +58,7 @@ function Dashboard(props){
     useEffect(()=>{
         if(!playingTrack) return
         
-        axios.get("http://localhost:3001/lyrics",{
+        axios.get("https://mysterious-river-51674.herokuapp.com/lyrics",{
             params:{
                 track: playingTrack.title,
                 artist: playingTrack.artist

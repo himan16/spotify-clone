@@ -9,7 +9,7 @@ function useAuth(code){
   
  useEffect(()=>{
    axios
-    .post("http://localhost:3001/login", {code})
+    .post("https://mysterious-river-51674.herokuapp.com/login", {code})
     .then(res=>{
         console.log("res.data ->",res.data)
         setAccessToken(res.data.accessToken)
@@ -27,7 +27,7 @@ function useAuth(code){
      if(!refreshToken || !expiresIn) return
      const timeInterval = setInterval(()=>{
         axios
-        .post("http://localhost:3001/refresh", {refreshToken})
+        .post("https://mysterious-river-51674.herokuapp.com/refresh", {refreshToken})
         .then(res=>{
             setAccessToken(res.data.accessToken)
             setExpiresIn(res.data.expiresIn)
