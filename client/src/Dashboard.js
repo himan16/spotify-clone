@@ -58,7 +58,7 @@ function Dashboard(props){
     useEffect(()=>{
         if(!playingTrack) return
         
-        axios.get("https://mysterious-river-51674.herokuapp.com/lyrics",{
+        axios.get("http://localhost:3001/lyrics",{
             params:{
                 track: playingTrack.title,
                 artist: playingTrack.artist

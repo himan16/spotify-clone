@@ -16,6 +16,7 @@ app.post('/login', (req, res)=>{
         clientId: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET
     })
+    // alert("Hello! I am an alert box!!");
     spotifyApi.authorizationCodeGrant(code).then(data=>{
         res.json({
             accessToken: data.body.access_token,
@@ -23,6 +24,7 @@ app.post('/login', (req, res)=>{
             expiresin: data.body.expires_in
         })
     }).catch((err)=>{
+        console.log("HELLO......");
         console.log("err=>",err); 
         res.sendStatus(400);
     })
@@ -52,9 +54,9 @@ app.post('/refresh', (req, res)=>{
 })
 app.get("/lyrics", async(req, res)=>{
     const lyrics = 
-    (await lyricsFinder(req.query.artist, req.query.track)) || "No lyrics found"
+    (await lyricsFinder(req.query.artist, req.query.track) || "No lyrics found")
     res.json({lyrics})
 })
  
-
-app.listen(process.env.PORT||3001);
+app.listen(3001);
+// app.listen(process.env.PORT || 3001);

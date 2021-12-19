@@ -9,7 +9,7 @@ function useAuth(code){
   
  useEffect(()=>{
    axios
-    .post("https://mysterious-river-51674.herokuapp.com/login", {code})
+    .post("http://localhost:3001/login", {code})
     .then(res=>{
         console.log("res.data ->",res.data)
         setAccessToken(res.data.accessToken)
@@ -18,7 +18,7 @@ function useAuth(code){
         window.history.pushState({}, null, "/")
     })
     .catch((err)=>{
-        console.log("err = ", err);
+        console.log("errbc = ", err);
         window.location="/"
     })
  }, [code])
@@ -27,7 +27,7 @@ function useAuth(code){
      if(!refreshToken || !expiresIn) return
      const timeInterval = setInterval(()=>{
         axios
-        .post("https://mysterious-river-51674.herokuapp.com/refresh", {refreshToken})
+        .post("http://localhost:3001/refresh", {refreshToken})
         .then(res=>{
             setAccessToken(res.data.accessToken)
             setExpiresIn(res.data.expiresIn)
@@ -42,6 +42,5 @@ function useAuth(code){
 
  return accessToken;
 }
-
 
 export default useAuth;
